@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water in Browser — JS vs WASM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Interactive browser demo</p>
+          <h1>Realistic water rendered with JavaScript and C/WASM</h1>
+          <p class="hero-copy">
+            Move your pointer across either surface to disturb the waves. Each view reports solver throughput so you can compare the two approaches without the browser's refresh-rate cap.
+          </p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-row">
+            <span class="metric-label">JavaScript solver</span>
+            <strong id="js-fps">measuring…</strong>
+          </div>
+          <div class="meter">
+            <div id="js-bar" class="meter-fill"></div>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">C/WASM solver</span>
+            <strong id="wasm-fps">measuring…</strong>
+          </div>
+          <div class="meter">
+            <div id="wasm-bar" class="meter-fill"></div>
+          </div>
+          <p id="status" class="status">Measuring solver time on a fixed 0–500 µs scale.</p>
+        </div>
+      </header>
+
+      <section class="demo-grid">
+        <article class="demo-panel">
+          <div class="panel-header">
+            <h2>JavaScript + WebGL</h2>
+            <span>CPU-driven height field</span>
+          </div>
+          <canvas id="js-canvas"></canvas>
+        </article>
+
+        <article class="demo-panel">
+          <div class="panel-header">
+            <h2>C WebAssembly + WebGL</h2>
+            <span>Native-style simulation</span>
+          </div>
+          <canvas id="wasm-canvas"></canvas>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
